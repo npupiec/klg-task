@@ -1,0 +1,23 @@
+/* You can add global styles to this file, and also import other style files */
+
+
+html, body {
+  min-height: 100vh;
+  height: auto;
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.container {
+  width: 1200px;
+  margin: 0 auto;
+  min-height:100vh;
+}
+
+.mat-typography h2 {
+  margin: 0;
+}
+
+.mat-card {
+  margin-bottom: 1rem;
+}

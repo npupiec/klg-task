@@ -1,0 +1,13 @@
+<section class="invoice-form">
+  <div class="container">
+    <div class="invoice-form__container">
+      <div class="invoice-form__header">
+        <h2 class="invoice-form__headline">Invoice generator form</h2>
+        <button mat-raised-button color="accent" (click)="addItem()">
+          <mat-icon>add</mat-icon>Add new item
+        </button>
+      </div>
+      <app-form (formChangeValue)="onFormValueChanges($event)"></app-form>
+    </div>
+  </div>
+</section>

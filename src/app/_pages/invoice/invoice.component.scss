@@ -1,0 +1,24 @@
+.invoice-form {
+  &__container {
+    padding: 1.5rem;
+    color: #efef;
+    border: 2px solid #efef;
+    margin-top: 1rem;
+    height: 100%;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+
+  &__sticky {
+    position: fixed;
+    bottom: 0;
+    background: #000;
+    padding: 1rem;
+    width: 100%;
+  }
+}

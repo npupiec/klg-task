@@ -1,0 +1,60 @@
+<form [formGroup]="invoiceForm" (ngSubmit)="submit()">
+  <ng-container formArrayName="items" *ngFor="let el of itemsFormArray.controls; let i = index">
+    <ng-container [formGroupName]="i">
+      <mat-card>
+        <mat-card-content>
+          <div class="form__card">
+            <div class="form__item">
+              <mat-form-field>
+                <mat-label>Name</mat-label>
+                <input matInput formControlName="name">
+                <ng-container *ngIf="el.get('name')?.invalid && (el.get('name')?.dirty || el.get('name')?.touched)">
+                  <ng-container *ngTemplateOutlet="error; context: {field: 'name', element: el}"></ng-container>
+                </ng-container>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Count</mat-label>
+                <input matInput formControlName="count">
+                <ng-container *ngIf="el.get('count')?.invalid && (el.get('count')?.dirty || el.get('count')?.touched)">
+                  <ng-container *ngTemplateOutlet="error; context: {field: 'count', element: el}"></ng-container>
+                </ng-container>
+              </mat-form-field>
+              <mat-form-field>
+                <mat-label>Price</mat-label>
+                <input matInput formControlName="price">
+                <ng-container *ngIf="el.get('price')?.invalid && (el.get('price')?.dirty || el.get('price')?.touched)">
+                  <ng-container *ngTemplateOutlet="error; context: {field: 'price', element: el}"></ng-container>
+                </ng-container>
+              </mat-form-field>
+            </div>
+            <button mat-mini-fab color="warn" (click)="removeItem(i)">
+              <mat-icon>delete</mat-icon>
+            </button>
+          </div>
+        </mat-card-content>
+      </mat-card>
+    </ng-container>
+  </ng-container>
+  <button mat-raised-button color="primary" [routerLink]="''">Submit</button>
+</form>
+<ng-template #error let-field="field" let-element="element">
+  <ng-container [ngSwitch]="field">
+    <div *ngSwitchCase="'name'">
+      <mat-error *ngIf="element.get('name')?.hasError('required')">{{formErrors.required}}</mat-error>
+      <mat-error *ngIf="element.get('name')?.hasError('minlength')">{{formErrors.at_least_3}}</mat-error>
+      <mat-error *ngIf="element.get('name')?.hasError('maxlength')">{{formErrors.too_long_30}}</mat-error>
+    </div>
+    <div *ngSwitchCase="'count'">
+      <mat-error *ngIf="element.get('count')?.hasError('required')">{{formErrors.required}}</mat-error>
+      <mat-error *ngIf="element.get('count')?.hasError('min')">{{formErrors.min}}</mat-error>
+      <mat-error *ngIf="element.get('count')?.hasError('max')">{{formErrors.max_100}}</mat-error>
+      <mat-error *ngIf="element.get('count')?.hasError('pattern')">{{formErrors.wrong}}</mat-error>
+    </div>
+    <div *ngSwitchCase="'price'">
+      <mat-error *ngIf="element.get('price')?.hasError('required')">{{formErrors.required}}</mat-error>
+      <mat-error *ngIf="element.get('price')?.hasError('min')">{{formErrors.min}}</mat-error>
+      <mat-error *ngIf="element.get('price')?.hasError('max')">{{formErrors.max}}</mat-error>
+      <mat-error *ngIf="element.get('price')?.hasError('pattern')">{{formErrors.wrong}}</mat-error>
+    </div>
+  </ng-container>
+</ng-template>

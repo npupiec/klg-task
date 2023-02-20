@@ -1,0 +1,13 @@
+<section class="preview">
+  <div class="container preview__container">
+    <div class="preview__company" *ngIf="companyData">
+      <p>{{companyData.name}}</p>
+      <p>{{companyData.address}}</p>
+      <p><span>Phones:</span>{{companyData.phones}}</p>
+    </div>
+    <hr>
+    <div class="preview__invoices">
+      <app-table [dataSource]="invoices"></app-table>
+    </div>
+  </div>
+</section>
